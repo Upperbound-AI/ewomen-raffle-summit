@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Women's Success Summit 2026 — Gift Basket Raffle</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink-deep: #C2185B;
+    --pink-mid: #E91E8C;
+    --pink-light: #FCE4EC;
+    --pink-pale: #FFF5F9;
+    --gold: #F0B429;
+    --gold-light: #FFF8E1;
+    --teal: #00897B;
+    --teal-light: #E0F2F1;
+    --white: #FFFFFF;
+    --gray-text: #4A4A4A;
+    --gray-soft: #F8F8F8;
+    --border: #F0C6D9;
+    --shadow: 0 8px 40px rgba(194,24,91,0.10);
+    --shadow-card: 0 2px 16px rgba(194,24,91,0.08);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(145deg, #FFF0F7 0%, #FFF8E1 50%, #E0F2F1 100%);
+    min-height: 100vh;
+    color: var(--gray-text);
+  }
+  /* ---- BANNER ---- */
+  .banner-wrap { width: 100%; background: white; line-height: 0; }
+  .banner-img { width: 100%; height: auto; display: block; }
+  /* ---- RAFFLE STRIP ---- */
+  .raffle-strip {
+    background: linear-gradient(135deg, var(--pink-deep) 0%, var(--pink-mid) 60%, #AD1457 100%);
+    padding: 22px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .raffle-strip::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .raffle-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(24px, 5vw, 36px);
+    font-weight: 700;
+    color: white;
+    line-height: 1.15;
+    margin-bottom: 6px;
+    position: relative;
+  }
+  .raffle-title em { font-style: italic; color: var(--gold); }
+  .chapter-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.35);
+    color: white;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 50px;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .raffle-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.9);
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .deadline-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: #7B4F00;
+    font-weight: 800;
+    font-size: 13px;
+    padding: 6px 18px;
+    border-radius: 50px;
+    letter-spacing: 1px;
+    position: relative;
+  }
+  /* ---- PRICING BAR ---- */
+  .pricing-bar {
+    background: white;
+    border-bottom: 2px solid var(--border);
+    padding: 14px 24px;
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .price-pill { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 15px; }
+  .price-pill .amount { color: var(--pink-deep); font-size: 20px; }
+  .price-pill .desc { color: var(--gray-text); font-size: 13px; line-height: 1.2; }
+  .price-divider { width: 1px; background: var(--border); }
+  /* ---- CONTAINER ---- */
+  .container { max-width: 680px; margin: 0 auto; padding: 32px 16px 60px; }
+  /* ---- STEPS ---- */
+  .steps { display: flex; align-items: center; justify-content: center; gap: 0; margin-bottom: 28px; }
+  .step { display: flex; align-items: center; gap: 8px; }
+  .step-num {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 14px;
+    background: var(--border);
+    color: #aaa;
+    transition: all .3s;
+  }
+  .step.active .step-num { background: var(--pink-mid); color: white; box-shadow: 0 0 0 4px rgba(233,30,140,0.2); }
+  .step.done .step-num { background: var(--teal); color: white; }
+  .step-label { font-size: 12px; font-weight: 700; color: #bbb; text-transform: uppercase; letter-spacing: .5px; }
+  .step.active .step-label, .step.done .step-label { color: var(--gray-text); }
+  .step-line { width: 40px; height: 2px; background: var(--border); margin: 0 4px; }
+  .step-line.done { background: var(--teal); }
+  /* ---- CARD ---- */
+  .card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    padding: 32px 28px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+    display: none;
+  }
+  .card.active { display: block; animation: fadeUp .35s ease; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--pink-deep);
+    margin-bottom: 6px;
+  }
+  .card-subtitle { font-size: 14px; color: #888; margin-bottom: 24px; }
+  /* ---- FIELDS ---- */
+  .field { margin-bottom: 18px; }
+  .field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gray-text);
+    margin-bottom: 6px;
+    letter-spacing: .3px;
+  }
+  .field label .req { color: var(--pink-mid); margin-left: 2px; }
+  .field input, .field select {
+    width: 100%;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    color: var(--gray-text);
+    transition: border-color .2s, box-shadow .2s;
+    outline: none;
+    background: var(--pink-pale);
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .field input:focus, .field select:focus {
+    border-color: var(--pink-mid);
+    box-shadow: 0 0 0 3px rgba(233,30,140,0.12);
+    background: white;
+  }
+  .field input::placeholder { color: #ccc; }
+  .field select { cursor: pointer; }
+  /* ---- TICKET COUNTER ---- */
+  .ticket-counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 28px 16px;
+    background: linear-gradient(135deg, var(--pink-pale), var(--gold-light));
+    border: 2px solid var(--gold);
+    border-radius: 18px;
+    margin-bottom: 18px;
+  }
+  .qty-btn-big {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    border: 3px solid var(--pink-mid);
+    background: white;
+    color: var(--pink-mid);
+    font-size: 32px;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    line-height: 1;
+    transition: all .15s;
+    flex-shrink: 0;
+  }
+  .qty-btn-big:hover { background: var(--pink-mid); color: white; transform: scale(1.05); }
+  .qty-btn-big:active { transform: scale(0.95); }
+  .qty-btn-big:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
+  .ticket-display { text-align: center; min-width: 90px; }
+  .ticket-count {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px;
+    font-weight: 700;
+    color: var(--pink-deep);
+    line-height: 1;
+    letter-spacing: -2px;
+  }
+  .ticket-label {
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: var(--gray-text);
+    letter-spacing: 2px;
+    margin-top: 4px;
+  }
+  .pricing-info {
+    background: var(--pink-pale);
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin-bottom: 18px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--gray-text);
+  }
+  .pricing-info strong { color: var(--pink-deep); }
+  /* ---- BASKETS PREVIEW ---- */
+  .baskets-preview {
+    background: linear-gradient(135deg, var(--pink-pale) 0%, var(--gold-light) 100%);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-top: 22px;
+  }
+  .baskets-preview-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--pink-deep);
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .baskets-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 14px;
+  }
+  .baskets-list li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-text);
+    line-height: 1.3;
+  }
+  .b-emoji { font-size: 18px; flex-shrink: 0; }
+  .baskets-and-more {
+    text-align: center;
+    margin-top: 12px;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--pink-deep);
+    font-weight: 700;
+  }
+  @media (max-width: 480px) {
+    .baskets-list { grid-template-columns: 1fr; }
+  }
+  /* ---- PRICING SUMMARY ---- */
+  .pricing-summary {
+    background: white;
+    border: 2px solid var(--gold);
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin-top: 8px;
+  }
+  .pricing-row { display: flex; justify-content: space-between; font-size: 14px; color: var(--gray-text); margin-bottom: 6px; }
+  .pricing-row.total {
+    border-top: 1.5px solid var(--gold);
+    padding-top: 10px;
+    margin-top: 8px;
+    font-weight: 800;
+    font-size: 20px;
+    color: var(--pink-deep);
+  }
+  .savings-note { font-size: 12px; color: var(--teal); font-weight: 700; margin-top: 6px; text-align: right; }
+  /* ---- REVIEW ---- */
+  .review-block { background: var(--gray-soft); border-radius: 12px; padding: 16px 18px; margin-bottom: 14px; }
+  .review-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #aaa; margin-bottom: 8px; }
+  .review-item { display: flex; justify-content: space-between; font-size: 14px; padding: 4px 0; border-bottom: 1px solid var(--border); }
+  .review-item:last-child { border-bottom: none; }
+  .review-item strong { color: var(--gray-text); }
+  .review-item span { color: var(--pink-deep); font-weight: 700; }
+  /* ---- BUTTONS ---- */
+  .btn {
+    width: 100%;
+    padding: 16px;
+    border-radius: 14px;
+    border: none;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all .2s;
+    letter-spacing: .5px;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--pink-mid), var(--pink-deep));
+    color: white;
+    box-shadow: 0 4px 20px rgba(233,30,140,0.35);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(233,30,140,0.45); }
+  .btn-primary:active { transform: translateY(0); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--pink-deep);
+    border: 2px solid var(--border);
+    margin-bottom: 12px;
+    font-size: 14px;
+  }
+  .btn-secondary:hover { border-color: var(--pink-mid); background: var(--pink-pale); }
+  .btn-pay {
+    background: linear-gradient(135deg, var(--gold), #E6A817);
+    color: #7B4F00;
+    box-shadow: 0 4px 20px rgba(240,180,41,0.4);
+    font-size: 18px;
+    padding: 18px;
+  }
+  .btn-pay:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(240,180,41,0.5); }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; }
+  /* ---- SUCCESS ---- */
+  .success-card { text-align: center; padding: 40px 28px; display: none; }
+  .success-card.active { display: block; animation: fadeUp .5s ease; }
+  .success-icon { font-size: 60px; margin-bottom: 16px; }
+  .success-card h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    color: var(--pink-deep);
+    margin-bottom: 10px;
+  }
+  .success-card p { color: #888; font-size: 15px; line-height: 1.6; }
+  /* ---- STATUS ---- */
+  .status-msg { padding: 12px 16px; border-radius: 10px; font-size: 14px; font-weight: 600; margin-top: 14px; display: none; }
+  .status-msg.error { background: #FFEBEE; color: #C62828; border: 1px solid #FFCDD2; display: block; }
+  .status-msg.info { background: var(--teal-light); color: #00695C; border: 1px solid #B2DFDB; display: block; }
+  /* ---- FOOTER ---- */
+  .form-footer { text-align: center; font-size: 12px; color: #bbb; margin-top: 16px; line-height: 1.7; }
+  .form-footer a { color: var(--pink-mid); text-decoration: none; }
+  /* ---- MODAL (only for 3+ ticket fallback) ---- */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(44,0,20,0.65);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: none;
+    align-items: center; justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+  }
+  .modal-overlay.active { display: flex; animation: fadeIn .25s ease; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .modal-content {
+    background: white;
+    border-radius: 22px;
+    padding: 34px 28px 28px;
+    max-width: 440px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: fadeUp .3s ease;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .modal-icon { font-size: 54px; margin-bottom: 10px; line-height: 1; }
+  .modal-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--pink-deep);
+    margin-bottom: 6px;
+    line-height: 1.15;
+  }
+  .modal-subtitle { color: #777; font-size: 14px; margin-bottom: 20px; line-height: 1.5; }
+  .amount-display {
+    background: linear-gradient(135deg, var(--pink-pale), var(--gold-light));
+    border: 2px solid var(--gold);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 18px;
+  }
+  .amount-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gray-text); font-weight: 800; margin-bottom: 6px; }
+  .amount-big {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 56px;
+    font-weight: 700;
+    color: var(--pink-deep);
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+  .copied-flash {
+    display: none;
+    background: var(--teal-light);
+    color: #00695C;
+    border: 1.5px solid var(--teal);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .copied-flash.show { display: block; animation: fadeIn .2s ease; }
+  /* ---- MOBILE ---- */
+  @media (max-width: 480px) {
+    .card { padding: 22px 16px; }
+    .pricing-bar { gap: 16px; padding: 12px 16px; }
+    .step-line { width: 24px; }
+    .ticket-count { font-size: 52px; }
+    .qty-btn-big { width: 48px; height: 48px; font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+<!-- BANNER IMAGE -->
+<div class="banner-wrap">
+  <img src="summit-banner.png" alt="Women's Success Summit 2026 with Sandra Yancey - eWomenNetwork" class="banner-img">
+</div>
+<!-- RAFFLE INFO STRIP -->
+<div class="raffle-strip">
+  <div class="chapter-tag">Presented by eWN Southwest Florida Chapter</div>
+  <h1 class="raffle-title">Gift Basket <em>Raffle</em></h1>
+  <div class="raffle-sub">May 28th · Miromar Lakes, FL</div>
+  <div class="deadline-badge">💛 All proceeds benefit the <a href="https://www.ewomennetworkfoundation.org/" target="_blank" rel="noopener" style="color:#7B4F00;text-decoration:underline;">eWomenNetwork Foundation</a></div>
+</div>
+<!-- PRICING BAR -->
+<div class="pricing-bar">
+  <div class="price-pill">
+    <span class="amount">$10</span>
+    <span class="desc">per raffle<br>ticket</span>
+  </div>
+  <div class="price-divider"></div>
+  <div class="price-pill">
+    <span class="amount">$25</span>
+    <span class="desc">for 3 tickets<br><strong style="color:var(--teal)">Save $5!</strong></span>
+  </div>
+  <div class="price-divider"></div>
+  <div class="price-pill">
+    <span class="amount">$50</span>
+    <span class="desc">for 6 tickets<br><strong style="color:var(--teal)">Save $10!</strong></span>
+  </div>
+</div>
+<!-- MAIN -->
+<div class="container">
+  <!-- STEP INDICATOR -->
+  <div class="steps" id="stepIndicator">
+    <div class="step active" id="si-1"><div class="step-num">1</div><div class="step-label">Your Info</div></div>
+    <div class="step-line" id="sl-1"></div>
+    <div class="step" id="si-2" style="opacity:.4"><div class="step-num">2</div><div class="step-label">Tickets</div></div>
+    <div class="step-line" id="sl-2"></div>
+    <div class="step" id="si-3" style="opacity:.4"><div class="step-num">3</div><div class="step-label">Review</div></div>
+  </div>
+  <!-- STEP 1: CONTACT INFO -->
+  <div class="card active" id="step1">
+    <div class="card-title">Let's get your info ✨</div>
+    <div class="card-subtitle">You'll receive a confirmation once your order is placed.</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+      <div class="field" style="margin-bottom:0;">
+        <label>First Name <span class="req">*</span></label>
+        <input type="text" id="firstName" placeholder="Jane" autocomplete="given-name">
+      </div>
+      <div class="field" style="margin-bottom:0;">
+        <label>Last Name <span class="req">*</span></label>
+        <input type="text" id="lastName" placeholder="Smith" autocomplete="family-name">
+      </div>
+    </div>
+    <div class="field">
+      <label>Email Address <span class="req">*</span></label>
+      <input type="email" id="email" placeholder="jane@example.com" autocomplete="email">
+    </div>
+    <div class="field">
+      <label>Phone Number <span class="req">*</span></label>
+      <input type="tel" id="phone" placeholder="(239) 555-0100" autocomplete="tel">
+    </div>
+    <div class="field">
+      <label>Mailing Address <span class="req">*</span></label>
+      <input type="text" id="address" placeholder="123 Main St, Fort Myers, FL 33901" autocomplete="street-address">
+    </div>
+    <div class="field">
+      <label>Membership Status <span class="req">*</span></label>
+      <select id="memberStatus" onchange="handleMemberChange()">
+        <option value="">— Select one —</option>
+        <option value="non-member">Non-Member</option>
+        <option value="member">eWN Member</option>
+      </select>
+    </div>
+    <div class="field" id="tierField" style="display:none;">
+      <label>Member Tier <span class="req">*</span></label>
+      <select id="memberTier">
+        <option value="">— Select your tier —</option>
+        <option value="CEO+">CEO+</option>
+        <option value="Platinum">Platinum</option>
+        <option value="Premiere">Premiere</option>
+      </select>
+    </div>
+    <div id="step1-error" class="status-msg"></div>
+    <button class="btn btn-primary" onclick="goToStep2()">Choose My Tickets →</button>
+  </div>
+  <!-- STEP 2: TICKET COUNTER -->
+  <div class="card" id="step2">
+    <div class="card-title">How many tickets? 🎟️</div>
+    <div class="card-subtitle">Choose how many raffle tickets you'd like. You can place them in any baskets you want at the event!</div>
+    <div class="ticket-counter">
+      <button class="qty-btn-big" id="minusBtn" onclick="changeTickets(-1)">−</button>
+      <div class="ticket-display">
+        <div class="ticket-count" id="ticketCount">0</div>
+        <div class="ticket-label">tickets</div>
+      </div>
+      <button class="qty-btn-big" onclick="changeTickets(1)">+</button>
+    </div>
+    <div class="pricing-info">
+      <strong>$10</strong> per ticket · <strong>$25</strong> for 3 tickets (save $5!)
+    </div>
+    <div class="pricing-summary" id="pricingSummary" style="display:none;">
+      <div class="pricing-row" id="bundleRow" style="display:none;"><span id="bundleLabel"></span><span id="bundleVal"></span></div>
+      <div class="pricing-row total"><span>Total Due</span><span id="totalVal">$0</span></div>
+      <div class="savings-note" id="savingsNote" style="display:none;"></div>
+    </div>
+    <div id="step2-error" class="status-msg" style="margin-top:12px;"></div>
+    <!-- FEATURED BASKETS PREVIEW -->
+    <div class="baskets-preview">
+      <div class="baskets-preview-title">🎁 Featured Baskets at the Event</div>
+      <ul class="baskets-list">
+        <li><span class="b-emoji">🧘‍♀️</span><span class="b-name">Wellness — Mind, Body, Spirit</span></li>
+        <li><span class="b-emoji">🍫</span><span class="b-name">Food &amp; Gourmet</span></li>
+        <li><span class="b-emoji">🌸</span><span class="b-name">Spa &amp; Beauty</span></li>
+        <li><span class="b-emoji">🐾</span><span class="b-name">Dog Lovers</span></li>
+        <li><span class="b-emoji">☕</span><span class="b-name">Coffee &amp; Tea</span></li>
+        <li><span class="b-emoji">🏡</span><span class="b-name">Real Estate "Welcome Home"</span></li>
+      </ul>
+      <div class="baskets-and-more">…and more surprises being added!</div>
+    </div>
+    <div style="margin-top:20px;">
+      <button class="btn btn-secondary" onclick="goToStep(1)">← Back</button>
+      <button class="btn btn-primary" id="step2Next" onclick="goToStep3()" disabled>Review My Order →</button>
+    </div>
+  </div>
+  <!-- STEP 3: REVIEW + PAY -->
+  <div class="card" id="step3">
+    <div class="card-title">Review &amp; complete payment 💳</div>
+    <div class="card-subtitle">Everything look good? Click below to pay securely via Stripe.</div>
+    <div class="review-block">
+      <div class="review-label">Your Information</div>
+      <div class="review-item"><strong>Name</strong><span id="rev-name"></span></div>
+      <div class="review-item"><strong>Email</strong><span id="rev-email"></span></div>
+      <div class="review-item"><strong>Phone</strong><span id="rev-phone"></span></div>
+      <div class="review-item"><strong>Address</strong><span id="rev-address"></span></div>
+      <div class="review-item"><strong>Membership</strong><span id="rev-member"></span></div>
+    </div>
+    <div class="review-block" style="background: linear-gradient(135deg,var(--pink-pale),var(--gold-light)); border: 1.5px solid var(--gold);">
+      <div class="review-label">Order Total</div>
+      <div class="review-item" style="font-size:16px;"><strong>Total Tickets</strong><span id="rev-tickets"></span></div>
+      <div class="review-item" style="font-size:20px; padding-top:8px;"><strong>Amount Due</strong><span id="rev-total" style="font-size:22px;"></span></div>
+    </div>
+    <div id="step3-error" class="status-msg"></div>
+    <button class="btn btn-secondary" onclick="goToStep(2)">← Edit Order</button>
+    <button class="btn btn-pay" id="payBtn" onclick="submitAndPay()">🔒 Complete Payment via Stripe</button>
+    <div style="background: linear-gradient(135deg, #E0F2F1, #FFF8E1); border: 1.5px solid var(--teal); border-radius: 12px; padding: 14px 18px; margin-bottom: 16px; text-align:center;">
+      <p style="font-family:'Nunito',sans-serif; font-size:13px; font-weight:700; color:#00695C; margin:0; line-height:1.7;">
+        💛 All proceeds from this raffle go to the
+        <a href="https://www.ewomennetworkfoundation.org/" target="_blank" style="color:var(--teal); text-decoration:underline;">eWomenNetwork Foundation</a><br>
+        supporting women &amp; children in need. Thank you for your generosity!
+      </p>
+    </div>
+    <div class="form-footer">
+      Secure payment processed by Stripe · Your info is shared with eWomenNetwork SW Florida<br>
+      Questions? <a href="mailto:swfl@ewomennetwork.com">swfl@ewomennetwork.com</a>
+    </div>
+  </div>
+  <!-- SUCCESS -->
+  <div class="card success-card" id="successCard">
+    <div class="success-icon">🎉</div>
+    <h2>You're in the drawing!</h2>
+    <p>
+      Your info is submitted &amp; a Stripe checkout tab just opened to complete your <strong style="color:var(--pink-deep);"><span id="successAmount">$0.00</span></strong> payment.
+      <br><br>
+      If the Stripe tab didn't open, <a href="#" id="stripeRetryLink" style="color:var(--pink-mid);font-weight:700;">click here to pay now</a>.
+      <br>
+      <span id="successFallbackNote" style="display:none; color:var(--pink-deep); font-weight:700; font-size:13px;">⚠️ Please make sure to enter your exact total on Stripe — we copied it to your clipboard for you.</span>
+      <br><br>
+      <strong>See you May 28th at Miromar Lakes! 💕</strong>
+    </p>
+  </div>
+</div><!-- /container -->
+<!-- FALLBACK MODAL (only shown for 3+ tickets) -->
+<div class="modal-overlay" id="confirmModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-content">
+    <div class="modal-icon">⚠️</div>
+    <h2 class="modal-title" id="modalTitle">One Important Step!</h2>
+    <p class="modal-subtitle">On the next screen (Stripe), please enter exactly:</p>
+    <div class="amount-display">
+      <div class="amount-label">Amount to Enter</div>
+      <div class="amount-big" id="modalAmount">$0.00</div>
+    </div>
+    <div class="copied-flash" id="copiedFlash">✅ Amount copied! Paste it on the Stripe page.</div>
+    <button class="btn btn-pay" id="confirmBtn" onclick="confirmAndGo()" style="margin-bottom:10px;">📋 Copy Amount &amp; Continue to Stripe</button>
+    <button class="btn btn-secondary" onclick="closeModal()" style="margin-bottom:0;">← Go Back</button>
+  </div>
+</div>
+<script>
+/* ============================================================
+   🔧 CONFIGURATION
+   ============================================================ */
+const GHL_WEBHOOK_URL = "https://services.leadconnectorhq.com/hooks/zIyWpbefoMSmJDuWjDbY/webhook-trigger/9835c155-5f1d-4f18-8c01-1edad2a23fa0";
+// Fixed-price Stripe Payment Links — exact match for ticket count = no copy/paste needed
+const STRIPE_LINKS = {
+  1: "https://buy.stripe.com/9B68wP1rOgaO1k2fECd3i07",
+  2: "https://buy.stripe.com/28E9AT7Qc7Ei8Mu1NMd3i08",
+  // Links 3-12 will be added as Juliet creates them in Stripe
+};
+// Fallback "Customer chooses price" link for ticket counts not in STRIPE_LINKS above
+const STRIPE_FALLBACK_LINK = "https://buy.stripe.com/00waEXb2oe2GaUCcsqd3i06";
+/* ============================================================ */
+let totalTickets = 0;
+/* ---- TICKET COUNTER ---- */
+function changeTickets(delta) {
+  totalTickets = Math.max(0, totalTickets + delta);
+  document.getElementById("ticketCount").textContent = totalTickets;
+  document.getElementById("minusBtn").disabled = (totalTickets === 0);
+  updatePricing();
+}
+/* ---- PRICING LOGIC ---- */
+function calcTotal(tickets) {
+  const bundles = Math.floor(tickets / 3);
+  const remaining = tickets % 3;
+  const total = (bundles * 25) + (remaining * 10);
+  const savings = (tickets * 10) - total;
+  return { total, bundles, remaining, savings };
+}
+function updatePricing() {
+  const summary = document.getElementById("pricingSummary");
+  const nextBtn = document.getElementById("step2Next");
+  const errEl = document.getElementById("step2-error");
+  errEl.className = "status-msg";
+  if (totalTickets === 0) {
+    summary.style.display = "none";
+    nextBtn.disabled = true;
+    return;
+  }
+  summary.style.display = "block";
+  const { total, bundles, remaining, savings } = calcTotal(totalTickets);
+  const bundleRow = document.getElementById("bundleRow");
+  if (bundles > 0) {
+    bundleRow.style.display = "flex";
+    document.getElementById("bundleLabel").textContent = `${bundles} bundle${bundles > 1 ? "s" : ""} (×3) + ${remaining} single${remaining !== 1 ? "s" : ""}`;
+    document.getElementById("bundleVal").textContent = `$${bundles * 25} + $${remaining * 10}`;
+  } else {
+    bundleRow.style.display = "none";
+  }
+  document.getElementById("totalVal").textContent = `$${total}`;
+  const savingsNote = document.getElementById("savingsNote");
+  if (savings > 0) {
+    savingsNote.style.display = "block";
+    savingsNote.textContent = `🎉 You're saving $${savings} with bundle pricing!`;
+  } else {
+    savingsNote.style.display = "none";
+  }
+  nextBtn.disabled = false;
+}
+/* ---- STEP NAVIGATION ---- */
+function goToStep(num) {
+  [1,2,3].forEach(n => document.getElementById("step" + n).classList.toggle("active", n === num));
+  updateStepIndicator(num);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+function updateStepIndicator(active) {
+  [1,2,3].forEach(n => {
+    const el = document.getElementById("si-" + n);
+    el.classList.remove("active", "done");
+    el.style.opacity = "1";
+    if (n < active) el.classList.add("done");
+    else if (n === active) el.classList.add("active");
+    else el.style.opacity = ".4";
+  });
+  [1,2].forEach(n => document.getElementById("sl-" + n).classList.toggle("done", n < active));
+}
+function handleMemberChange() {
+  const val = document.getElementById("memberStatus").value;
+  document.getElementById("tierField").style.display = val === "member" ? "block" : "none";
+  if (val !== "member") document.getElementById("memberTier").value = "";
+}
+function goToStep2() {
+  const firstName = document.getElementById("firstName").value.trim();
+  const lastName = document.getElementById("lastName").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const address = document.getElementById("address").value.trim();
+  const memberStatus = document.getElementById("memberStatus").value;
+  const memberTier = document.getElementById("memberTier").value;
+  const err = document.getElementById("step1-error");
+  err.className = "status-msg";
+  if (!firstName || !lastName || !email || !phone || !address || !memberStatus) {
+    err.textContent = "Please fill in all fields before continuing.";
+    err.className = "status-msg error";
+    return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    err.textContent = "Please enter a valid email address.";
+    err.className = "status-msg error";
+    return;
+  }
+  if (memberStatus === "member" && !memberTier) {
+    err.textContent = "Please select your member tier.";
+    err.className = "status-msg error";
+    return;
+  }
+  goToStep(2);
+}
+function goToStep3() {
+  if (totalTickets === 0) {
+    const err = document.getElementById("step2-error");
+    err.textContent = "Please add at least 1 ticket to continue.";
+    err.className = "status-msg error";
+    return;
+  }
+  const firstName = document.getElementById("firstName").value.trim();
+  const lastName = document.getElementById("lastName").value.trim();
+  const memberStatus = document.getElementById("memberStatus").value;
+  const memberTier = document.getElementById("memberTier").value;
+  document.getElementById("rev-name").textContent = firstName + " " + lastName;
+  document.getElementById("rev-email").textContent = document.getElementById("email").value.trim();
+  document.getElementById("rev-phone").textContent = document.getElementById("phone").value.trim();
+  document.getElementById("rev-address").textContent = document.getElementById("address").value.trim();
+  document.getElementById("rev-member").textContent = memberStatus === "member" ? "eWN Member — " + memberTier : "Non-Member";
+  const { total } = calcTotal(totalTickets);
+  document.getElementById("rev-tickets").textContent = `${totalTickets} ticket${totalTickets > 1 ? "s" : ""}`;
+  document.getElementById("rev-total").textContent = `$${total}`;
+  goToStep(3);
+}
+/* ---- SUBMIT + PAY ---- */
+function submitAndPay() {
+  const { total } = calcTotal(totalTickets);
+  // If there's an exact Stripe link for this ticket count → just go straight to it (no modal)
+  if (STRIPE_LINKS[totalTickets]) {
+    fireWebhookAndRedirect(STRIPE_LINKS[totalTickets], false);
+    return;
+  }
+  // Otherwise: show the copy-paste modal and use the fallback "Customer chooses price" link
+  document.getElementById("modalAmount").textContent = `$${total}.00`;
+  document.getElementById("copiedFlash").classList.remove("show");
+  const btn = document.getElementById("confirmBtn");
+  btn.disabled = false;
+  btn.innerHTML = "📋 Copy Amount &amp; Continue to Stripe";
+  document.getElementById("confirmModal").classList.add("active");
+}
+function closeModal() {
+  document.getElementById("confirmModal").classList.remove("active");
+}
+async function confirmAndGo() {
+  const btn = document.getElementById("confirmBtn");
+  const flash = document.getElementById("copiedFlash");
+  btn.disabled = true;
+  btn.textContent = "⏳ One moment...";
+  const { total } = calcTotal(totalTickets);
+  // Copy amount to clipboard
+  const amountString = total.toString();
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      await navigator.clipboard.writeText(amountString);
+    } else {
+      const tmp = document.createElement("textarea");
+      tmp.value = amountString;
+      document.body.appendChild(tmp);
+      tmp.select();
+      document.execCommand("copy");
+      document.body.removeChild(tmp);
+    }
+    flash.classList.add("show");
+  } catch (e) { /* clipboard failed - amount still visible */ }
+  setTimeout(() => {
+    document.getElementById("confirmModal").classList.remove("active");
+    fireWebhookAndRedirect(STRIPE_FALLBACK_LINK, true);
+  }, 700);
+}
+async function fireWebhookAndRedirect(stripeBaseLink, isFallback) {
+  const firstName = document.getElementById("firstName").value.trim();
+  const lastName = document.getElementById("lastName").value.trim();
+  const name = firstName + " " + lastName;
+  const email = document.getElementById("email").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const address = document.getElementById("address").value.trim();
+  const memberStatus = document.getElementById("memberStatus").value;
+  const memberTier = document.getElementById("memberTier").value;
+  const { total } = calcTotal(totalTickets);
+  const payload = {
+    contact: { firstName, lastName, name, email, phone, address, memberStatus, memberTier: memberStatus === "member" ? memberTier : "N/A" },
+    order: {
+      totalTickets,
+      totalAmount: total,
+      eventName: "Women's Success Summit 2026 — Gift Basket Raffle",
+      eventDate: "May 28, 2026",
+      submittedAt: new Date().toISOString(),
+    }
+  };
+  try {
+    await fetch(GHL_WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      mode: "no-cors",
+      body: JSON.stringify(payload),
+    });
+  } catch (e) { /* fire-and-forget */ }
+  const stripeUrl = stripeBaseLink
+    + "?prefilled_email=" + encodeURIComponent(email)
+    + "&client_reference_id=" + encodeURIComponent(name.replace(/\s+/g, "_"));
+  document.getElementById("step3").classList.remove("active");
+  document.getElementById("successCard").classList.add("active");
+  updateStepIndicator(4);
+  document.getElementById("stripeRetryLink").href = stripeUrl;
+  document.getElementById("successAmount").textContent = `$${total}.00`;
+  document.getElementById("successFallbackNote").style.display = isFallback ? "block" : "none";
+  window.open(stripeUrl, "_blank");
+}
+// Close modal when clicking outside
+document.addEventListener("click", function(e) {
+  const overlay = document.getElementById("confirmModal");
+  if (e.target === overlay) closeModal();
+});
+/* ---- INIT ---- */
+updateStepIndicator(1);
+changeTickets(0);
+</script>
+</body>
+</html>
