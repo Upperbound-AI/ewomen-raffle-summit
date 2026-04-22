@@ -30,8 +30,23 @@
     color: var(--gray-text);
   }
   /* ---- BANNER ---- */
-  .banner-wrap { width: 100%; background: white; line-height: 0; }
-  .banner-img { width: 100%; height: auto; display: block; }
+  .banner-wrap {
+    width: 100%;
+    background: white;
+    line-height: 0;
+    text-align: center;
+    padding: 6px 0;
+  }
+  .banner-img {
+    max-width: 100%;
+    max-height: 140px;
+    width: auto;
+    height: auto;
+    display: inline-block;
+  }
+  @media (max-width: 480px) {
+    .banner-img { max-height: 100px; }
+  }
   /* ---- RAFFLE STRIP ---- */
   .raffle-strip {
     background: linear-gradient(135deg, var(--pink-deep) 0%, var(--pink-mid) 60%, #AD1457 100%);
